@@ -49,12 +49,6 @@ jobs:
         with:
           version: latest
 
-      - name: Static
-        uses: grandcolline/golang-github-actions@v1.1.0
-        with:
-          run: staticcheck
-          token: ${{ secrets.GITHUB_TOKEN }}
-
   artifacts:
     needs: [ build, checks ]
     runs-on: ubuntu-latest
