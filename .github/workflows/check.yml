@@ -49,30 +49,25 @@ jobs:
         with:
           version: latest
 
-      - uses: actions/checkout@master
-      - name: check
+      - name: Imports
         uses: k8s-school/golang-github-actions@v1.1.2
         with:
           run: imports
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/checkout@master
-      - name: check
+      - name: Errors
         uses: k8s-school/golang-github-actions@v1.1.2
         with:
           run: errcheck
           token: ${{ secrets.GITHUB_TOKEN }}
 
-
-      - uses: actions/checkout@master
-      - name: check
+      - name: Shadow
         uses: k8s-school/golang-github-actions@v1.1.2
         with:
           run: shadow
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/checkout@master
-      - name: check
+      - name: Static
         uses: k8s-school/golang-github-actions@v1.1.2
         with:
           run: staticcheck
