@@ -44,8 +44,22 @@ jobs:
           go mod tidy
           go test -v -race -coverpkg=./... ./...
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@master
-        with:
-          name: main_bin
-          path: ./main
+  artifacts:
+      runs-on: ubuntu-latest
+      needs: [ build ]
+      steps:
+
+        - name: Upload artifacts on GitHub
+          uses: actions/upload-artifact@master
+          with:
+            name: main_bin
+            path: ./main
+
+        - name: Upload artifacts on GDrive
+          uses: adityak74/google-drive-upload-git-action@main
+          with:
+            credentials: ${{ secrets.credentials }}
+            filename: "main"
+            folderId: ${{ secrets.folderId }}
+            name: "documentation.zip" # optional string
+            overwrite: "true" # optional boolean
