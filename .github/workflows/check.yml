@@ -38,7 +38,7 @@ jobs:
           go mod tidy
           go test -v -race -coverpkg=./... ./...
 
-  checks:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
