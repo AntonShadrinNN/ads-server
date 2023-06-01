@@ -47,5 +47,5 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@master
         with:
-          name: main.exe
-          path: ./main.exe
+          name: main_bin
+          path: ./main
