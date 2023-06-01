@@ -32,6 +32,7 @@ jobs:
         run: |
           go mod tidy
           go build -v ./...
+          go build ./cmd/main.go
 
       - name: Lint
         uses: golangci/golangci-lint-action@v3
@@ -44,9 +45,7 @@ jobs:
           go test -v -race -coverpkg=./... ./...
 
       - name: Upload artifacts
-      - uses: actions/upload-artifact@master
-        run:
-          go build ./cmd/main.go
+        uses: actions/upload-artifact@master
         with:
           name: main.exe
           path: ./main.exe
