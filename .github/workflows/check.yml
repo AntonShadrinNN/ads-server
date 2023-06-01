@@ -11,6 +11,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Cache Go modules
+        uses: actions/cache@preview
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-build-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.OS }}-build-${{ env.cache-name }}-
+          ${{ runner.OS }}-build-
+          ${{ runner.OS }}-   
+
       - uses: actions/checkout@v3
 
       - name: Set up
@@ -33,13 +43,13 @@ jobs:
           go mod tidy
           go test -v -race -coverpkg=./... ./...
 
-  upload_artifacts:
-    needs: [ build ]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Upload the artifacts
-        uses: skx/github-action-publish-binaries@release-1.3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          args: '*.bin'
+#  upload_artifacts:
+#    needs: [ build ]
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Upload the artifacts
+#        uses: skx/github-action-publish-binaries@release-1.3
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          args: '*.bin'
