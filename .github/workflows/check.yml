@@ -50,7 +50,7 @@ jobs:
           version: latest
 
   artifacts:
-    needs: [ build, checks ]
+    needs: [ build, lint ]
     runs-on: ubuntu-latest
 
 
