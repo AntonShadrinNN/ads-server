@@ -22,4 +22,4 @@ jobs:
         with:
           file: Dockerfile
           push: true
-          tags: user/app:latest
+          tags: antonsh117/ad-service:latest
