@@ -33,18 +33,68 @@ jobs:
           go mod tidy
           go build -v ./...
 
-      - name: Lint
-        uses: golangci/golangci-lint-action@v3
-        with:
-          version: latest
-
       - name: Test
         run: |
           go mod tidy
           go test -v -race -coverpkg=./... ./...
 
+  checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Lint
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: latest
+
+      - uses: actions/checkout@master
+      - name: check
+        uses: k8s-school/golang-github-actions@v1.1.2
+        with:
+          run: imports
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/checkout@master
+      - name: check
+        uses: k8s-school/golang-github-actions@v1.1.2
+        with:
+          run: errcheck
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+
+      - uses: actions/checkout@master
+      - name: check
+        uses: k8s-school/golang-github-actions@v1.1.2
+        with:
+          run: shadow
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/checkout@master
+      - name: check
+        uses: k8s-school/golang-github-actions@v1.1.2
+        with:
+          run: staticcheck
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  artifacts:
+    needs: [ build, checks ]
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up
+        uses: actions/setup-go@v3
+        with:
+          go-version: 'stable'
+
       - name: Build main.go
-        run: go build ./cmd/main.go
+        run: |
+          go mod tidy
+          go build ./cmd/main.go
 
       - name: Upload artifacts on GitHub
         uses: actions/upload-artifact@master
