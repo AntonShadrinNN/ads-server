@@ -52,11 +52,17 @@ jobs:
           name: main_bin
           path: ./main
 
+      - name: Archive files
+        run: |
+          sudo apt-get update
+          sudo apt-get install zip
+          zip -r artifacts.zip ./main
+
       - name: Upload artifacts on GDrive
         uses: adityak74/google-drive-upload-git-action@main
         with:
           credentials: ${{ secrets.credentials }}
-          filename: "main"
+          filename: "artifacts.zip"
           folderId: ${{ secrets.folderId }}
-          name: "documentation.zip" # optional string
-          overwrite: "true" # optional boolean
+          name: "artifacts.zip"
+          overwrite: "true"
