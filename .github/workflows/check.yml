@@ -32,7 +32,6 @@ jobs:
         run: |
           go mod tidy
           go build -v ./...
-          go build ./cmd/main.go
 
       - name: Lint
         uses: golangci/golangci-lint-action@v3
@@ -48,6 +47,8 @@ jobs:
       runs-on: ubuntu-latest
       needs: [ build ]
       steps:
+        - name: Build main.go
+          run: go build ./cmd/main.go
 
         - name: Upload artifacts on GitHub
           uses: actions/upload-artifact@master
