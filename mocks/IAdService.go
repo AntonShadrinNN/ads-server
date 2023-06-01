@@ -3,8 +3,8 @@
 package mocks
 
 import (
+	grpc "ads-server/proto"
 	context "context"
-	grpc "homework10/proto"
 
 	mock "github.com/stretchr/testify/mock"
 )
