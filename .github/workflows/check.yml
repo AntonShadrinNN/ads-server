@@ -48,7 +48,9 @@ jobs:
       needs: [ build ]
       steps:
         - name: Build main.go
-          run: go build ./cmd/main.go
+          run: |
+            go mod tidy
+            go build ./cmd/main.go
 
         - name: Upload artifacts on GitHub
           uses: actions/upload-artifact@master
