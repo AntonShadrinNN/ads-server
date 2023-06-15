@@ -35,7 +35,7 @@ jobs:
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
         with:
-          key: { %- raw -% } ${{ secrets.SSH_PK }}
+          key: ${{ secrets.SSH_PK }}
           known-hosts: "place-holder"
 
       - name: Add known hosts
