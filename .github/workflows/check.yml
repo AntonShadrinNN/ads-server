@@ -112,7 +112,7 @@ jobs:
           tags: antonsh117/ad-service:latest
 
   deploy:
-#     needs: [push-to-dockerhub]
+    needs: [push-to-dockerhub]
     runs-on: self-hosted
 
     steps:
