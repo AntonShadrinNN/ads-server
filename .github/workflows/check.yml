@@ -112,11 +112,11 @@ jobs:
           tags: antonsh117/ad-service:latest
 
   deploy:
-    needs: [push-to-dockerhub]
+#     needs: [push-to-dockerhub]
     runs-on: self-hosted
 
     steps:
       - name: pull image
-        run: docker pull antonsh117/ad-service:latest
+        run: sudo docker pull antonsh117/ad-service:latest
       - name: run container
-        run: docker run antonsh117/ad-service:latest
+        run: sudo docker run antonsh117/ad-service:latest
