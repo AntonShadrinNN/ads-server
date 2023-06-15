@@ -118,5 +118,9 @@ jobs:
     steps:
       - name: pull image
         run: sudo docker pull antonsh117/ad-service:latest; echo ${{ secrets.VM_PASS }}
+      - name: remove old containers
+        run: sudo docker stop $(docker ps -a -q)
       - name: run container
         run: sudo docker run -d antonsh117/ad-service:latest
+      - name: remove old version
+        run: sudo docker rm $(docker ps -q -f status=exited)
