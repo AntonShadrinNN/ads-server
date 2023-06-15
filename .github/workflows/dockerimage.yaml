@@ -36,7 +36,7 @@ jobs:
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.SSH_PK }}
-          known-hosts: "place-holder"
+          known_hosts: "place-holder"
 
       - name: Add known hosts
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
