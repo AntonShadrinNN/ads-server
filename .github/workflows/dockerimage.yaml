@@ -40,6 +40,9 @@ jobs:
 
       - name: Add known hosts
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-
+        
+      - run: sudo touch ~/test.txt
+      
       - name: Deploy
-        run: sudo rsync --archive --compress --progress . ${{ env.SERVER_USER }}@${{ secrets.SSH_HOST }}
+        run: rsync -avz ~/test.txt ${{ env.SERVER_USER }}@${{ secrets.SSH_HOST }}
+    
