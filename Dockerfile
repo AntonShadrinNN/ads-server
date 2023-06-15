@@ -3,13 +3,13 @@ FROM golang:1.19
 
 WORKDIR /app
 
-ADD . .
+ADD go.mod go.sum ./
 RUN go mod download
 RUN go mod tidy
 
-COPY cmd/main.go ./
+COPY . ./
 
-RUN go build -o /main main.go
+RUN go build -o /main cmd/main.go
 
 EXPOSE 8080
 

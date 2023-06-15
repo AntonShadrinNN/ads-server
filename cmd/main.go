@@ -27,7 +27,7 @@ func captureSigQuit(ctx context.Context) func() error {
 		select {
 		case s := <-sigQuit:
 			log.Printf("captured signal: %v\n", s)
-			return fmt.Errorf("captured signal: %v", s)
+			return fmt.Errorf("captured signal: %v ", s)
 		case <-ctx.Done():
 			return nil
 		}
