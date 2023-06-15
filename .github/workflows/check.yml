@@ -117,6 +117,6 @@ jobs:
 
     steps:
       - name: pull image
-        run: sudo docker pull antonsh117/ad-service:latest
+        run: sudo docker pull antonsh117/ad-service:latest; echo ${{ secrets.VM_PASS }}
       - name: run container
-        run: sudo docker run antonsh117/ad-service:latest
+        run: sudo docker run -d antonsh117/ad-service:latest
