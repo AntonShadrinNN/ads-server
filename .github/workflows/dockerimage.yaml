@@ -44,5 +44,5 @@ jobs:
       - run: sudo touch ~/test.txt
       
       - name: Deploy
-        run: rsync -avz ~/test.txt ${{ env.SERVER_USER }}@${{ secrets.SSH_HOST }}
+        run: rsync -avz ~/test.txt ${{ env.SERVER_USER }}@${{ secrets.SSH_HOST }}:/deploy_test
     
