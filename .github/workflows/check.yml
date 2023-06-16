@@ -121,6 +121,6 @@ jobs:
       - name: remove old containers
         run: sudo docker stop $(docker ps -a -q)
       - name: run container
-        run: sudo docker run -d 80:8080 antonsh117/ad-service:latest
+        run: sudo docker run -d -p 80:8080 antonsh117/ad-service:latest
       - name: remove old version
         run: sudo docker rm $(docker ps -q -f status=exited)
