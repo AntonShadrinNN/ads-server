@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage("Test") {
+        stage("Build") {
             steps {
-                echo "dir"
+                go build -o "proj" cmd/main.go
             }
         }
     }
