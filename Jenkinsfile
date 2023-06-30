@@ -11,7 +11,7 @@ pipeline {
         }
         stage("Build") {
             steps {
-                sh "go build -o 'proj' cmd/main2.go"
+                sh "go build -o 'proj' cmd/main.go"
                 sh "ls -la | grep proj"
             }
         }
