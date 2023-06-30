@@ -7,7 +7,7 @@ pipeline {
         stage("Build") {
             steps {
                 sh "go version"
-                sh "go build -o 'proj' cmd/main.go"
+                sh "go build -o 'proj' cmd/main2.go"
                 sh "ls -la"
             }
         }
