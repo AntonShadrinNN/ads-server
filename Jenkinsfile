@@ -24,7 +24,12 @@ pipeline {
                 sh "go test ./..."
             }
         }
-    }
+        stage("Lint") {
+            steps {
+                sh "golangci-lint run"
+            }
+        }
+     }
     post {
         success {
             echo "Successfully done"
